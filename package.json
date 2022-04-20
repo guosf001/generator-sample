@@ -1,14 +1,21 @@
 {
-  "name": "generator-sample-gsf",
+  "name": "gsf",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "bin": {
+    "gsf": "./bin/gsf",
+    "gsf-cli": "./bin/gsf"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "yeoman-generator": "^5.4.2"
+    "axios": "^0.26.1",
+    "chalk": "^5.0.1",
+    "download-git-repo": "^3.0.2",
+    "ora": "^5.1.0"
   }
 }

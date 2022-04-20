@@ -1,0 +1,54 @@
+#! /usr/bin/env node
+
+// 1、配置可执行命令  commander
+
+const program = require('commander');
+// const chalk = require('chalk'); // 字体颜色
+
+// 核心功能 1、创建项目 2、更改配置文件 3、ui界面
+
+// 万一重名了？  强制创建的模式
+program
+  .command('create <app-name>')
+  .description('create a new project')
+  .option('-f, --force', 'overwrite target directory if it exists')
+  .action((name, cmd) => {
+    require('../lib/create')(name, cmd);
+  });
+
+// vue config --get a
+// vue config --set a 1 -> 配置文件中
+// vue config -0
+
+program
+  .command('config [value]')
+  .description('inspect and modify the config')
+  .option('-g, --get <path>', 'get value from option')
+  .option('-s, --set <path> <value>')
+  .option('-d, --delete <path>', 'delete option from config')
+  .action((value, cmd) => {});
+
+program
+  .command('ui')
+  .description('start and open gsf-cli ui')
+  .option('-p --port <option>', 'Port used for the UI Server')
+  .action((cmd) => {
+    console.log(`clear`, cmd);
+  });
+
+program.version(`gsf-cli ${require('../package.json').version}`).usage(`<command> [option]`);
+
+program.on('--help', function () {
+  console.log();
+  console.log(`Run gsf-cli <command> --help show details`);
+  console.log();
+});
+
+// 解析用户执行命令传入的参数  gsf ***   argv -> ***
+program.parse(process.argv);
+
+// 2、首先有一个命令交互的功能  inquirer
+
+// 3、将模板下载下来  donwload-git-repo
+
+// 4、根据用户的选择动态的生成内容  metalsmith
